@@ -1,0 +1,6 @@
+//move this file to aerohive/api/config.js
+var config = require('./../../../config');
+
+module.exports.redirectUrl = config.aerohive.redirectUrl;
+module.exports.secret = config.aerohive.clientSecret;
+module.exports.clientId = config.aerohive.clientId;

@@ -1,0 +1,15 @@
+{
+  "name": "ASL",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "angular-messages": "^1.5.7",
+    "ngSanitize": "^0.0.2",
+    "angular-translate": "^2.11.0",
+    "angular-material": "^1.0.9",
+    "angular": "angularjs#^1.5.7"
+  }
+}

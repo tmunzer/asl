@@ -1,0 +1,17 @@
+extends layout
+block content
+    div.login
+        h1.login Welcome to our Free Wi-Fi
+        hr
+        h2.login You will be redirected soon...
+        form(name="weblogin" action="http://" + nasIpAddress + "/reg.php" id="logon" method="post")
+            input(type="hidden" name="url" value= url)
+            input(type="hidden" name="autherr" value="0")
+            input(type="hidden" name="username" value= username)
+            input(type="hidden" name="password" value= password)
+    script.
+        window.onload = function () {
+            window.setTimeout(function () {
+                document.getElementById('logon').submit();
+            }, 5000);
+        }

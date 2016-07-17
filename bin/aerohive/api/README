@@ -1,0 +1,27 @@
+
+
+The main.js file is registering all the APIs from this library.
+
+Currently, this library is not yet available on GitHub, but feel free to check the Aerohive repository to know if the work is done!
+
+
+To use this library:
+1. create a config.js file to put your App informations to get access to ACS (see config_example for more information)
+2. import the main.js file to your project.
+3. You will then be able to call all the API requests from this central point.
+
+EXAMPLE:
+
+var API = require(path_to_library + "/aerohive/api/main");
+var xapi = {
+  vpcUrl: "cloud-va.aerohive.com"       //the regional server
+  ownerId: "00000",                     //the account "ownerId" value
+  accessToken : "xxxxxxxxxxxxxxxxxxx"   //the Access Token to get data for this account
+}
+API.identity.userGroups.getUserGroups(xapi, null, null, function (err, result) {
+  if (err) res.json({error: err});
+  else {
+    result.reqId = req.body.reqId;
+    res.json(result);
+  }
+});
