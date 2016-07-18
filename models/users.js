@@ -13,7 +13,7 @@ function validateEmail(email) {
 }
 
 var UserSchema = new mongoose.Schema({
-    userId:  Number,
+    userId:  String,
     password: String,
     name:  String,
     email: String,
@@ -62,51 +62,50 @@ UserSchema.pre('save', function(next) {
 });
     
 function createPassword(account, callback) {
-    console.log("haha!");
-          Api.identity.credentials.createCredential(
-            config.aerohive,
-            null,
-            null, 
-            {  
-                "deliverMethod": "NO_DELIVERY",
-                "firstName": account.userId,
-                "groupId": config.aerohive.groupId,
-                "policy": "GUEST",
-                "organization": account.provider,
-                "purpose": "Social Login"
-            },
-            function (err, credential) {    
-                // if the account already exists on ACS
-                if (err && err.code == "registration.service.item.already.exist") {
-                    Api.identity.credentials.getCredentials(
-                        config.aerohive, 
-                        null, null, null, null, null,
-                        account.userId,
-                        null, null, null, null, null, null,
-                        function (err, oldCredential) {
-                            Api.identity.credentials.deleteCredential(
-                            config.aerohive, 
-                            null,
-                            null,
-                            oldCredential[0].id,
-                            function (err) {
-                                if (err) console.log(err);
-                                createPassword(account, function (newAccount) {
-                                    callback(newAccount);
-                                })                            
-                            })
-                        }) 
-                } else {
-                    account.password = credential.password;
-                    callback(account);
-                }
-            }
-        );
+    Api.identity.credentials.createCredential(
+    config.aerohive,
+    null,
+    null, 
+    {  
+        "deliverMethod": "NO_DELIVERY",
+        "firstName": account.userId,
+        "groupId": config.aerohive.groupId,
+        "policy": "GUEST",
+        "organization": account.provider,
+        "purpose": "Social Login"
+    },
+    function (err, credential) {    
+        // if the account already exists on ACS
+        if (err && err.code == "registration.service.item.already.exist") {
+            Api.identity.credentials.getCredentials(
+                config.aerohive, 
+                null, null, null, null, null,
+                account.userId,
+                null, null, null, null, null, null,
+                function (err, oldCredential) {
+                    Api.identity.credentials.deleteCredential(
+                    config.aerohive, 
+                    null,
+                    null,
+                    oldCredential[0].id,
+                    function (err) {
+                        if (err) console.log(err);
+                        createPassword(account, function (newAccount) {
+                            callback(newAccount);
+                        })                            
+                    })
+                }) 
+        } else {
+            account.password = credential.password;
+            callback(account);
+        }
+    });
 }
 
 
 User.findOrCreate = function findOrCreate(profile, cb){
     var userObj = new this();
+    console.log(profile);
     this.findOne({userId : profile.id, provider: profile.provider},function(err,result){ 
         if (!result) {
             if (profile.provider == "facebook") {
@@ -124,6 +123,10 @@ User.findOrCreate = function findOrCreate(profile, cb){
                 userObj.userId = profile._json.id;
                 userObj.name = profile._json.screen_name;
                 userObj.location = profile._json.location;
+            } else if (profile.provider == "linkedin") {
+                userObj.provider = "linkedin";
+                userObj.userId = profile._json.id;
+                userObj.name = profile.displayName;
             }
             userObj.created_at = new Date();
             userObj.updated_at = new Date();

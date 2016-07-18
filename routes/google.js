@@ -35,7 +35,12 @@ router.get('/callback',
   function(req, res) {
     console.log(req.session);
     // Successful authentication, redirect home.
-    res.redirect('/?user='+req.session.passport.user.userId + "&password="+req.session.passport.user.password);
+    res.render("redirect", {
+      nasIpAddress: req.session.params.nasIpAddress,
+      url: req.session.params.url,
+      username: req.session.passport.user.userId,
+      password: req.session.passport.user.password
+    });
   });
 
 module.exports = router;

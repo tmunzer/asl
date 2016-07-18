@@ -23,21 +23,26 @@ passport.deserializeUser(function(user, done) {
 passport.use(new LinkedInStrategy(
     config.linkedin,
     function (token, tokenSecret, profile, cb) {
-    User.findOrCreate(profile, function (err, user) {
-      return cb(err, user);
-    });
-  }
+        User.findOrCreate(profile, function (err, user) {
+            return cb(err, user);
+        });
+    }
 ));
 
 router.get('/',
-  passport.authenticate('linkedin', { scope: ['profile'] }));
+  passport.authenticate('linkedin'));
 
 router.get('/callback', 
   passport.authenticate('linkedin', { failureRedirect: '/login' }),
   function(req, res) {
     console.log(req.session);
     // Successful authentication, redirect home.
-    res.redirect('/?user='+req.session.passport.user.userId + "&password="+req.session.passport.user.password);
+    res.render("redirect", {
+      nasIpAddress: req.session.params.nasIpAddress,
+      url: req.session.params.url,
+      username: req.session.passport.user.userId,
+      password: req.session.passport.user.password
+    });
   });
 
 module.exports = router;

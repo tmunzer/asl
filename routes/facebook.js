@@ -36,7 +36,6 @@ router.get('/',
 router.get('/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log(req.session);
     // Successful authentication, redirect home.
     res.render("redirect", {
       nasIpAddress: req.session.params.nasIpAddress,

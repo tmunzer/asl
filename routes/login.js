@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
 
 })
 
-function checkURI(req, next){
+function checkURI(req, callback){
     if (req.query['Calling-Station-Id'].length != 12) {
         console.log("Login Error: Calling-Station-Id");
         res.render("login_error");
@@ -47,7 +47,7 @@ function checkURI(req, next){
             nasIpAddress: req.query['NAS-IP-Address']
         };
         //if no error, got to login_upa
-        next(params);
+        callback(params);
     }
 }
 

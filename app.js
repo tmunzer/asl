@@ -56,8 +56,8 @@ var google = require('./routes/google');
 app.use('/auth/google', google);
 var twitter = require('./routes/twitter');
 app.use('/auth/twitter', twitter);
-//var linkedin = require('./routes/linkedin');
-//app.use('/auth/linkedin', linkedin);
+var linkedin = require('./routes/linkedin');
+app.use('/auth/linkedin', linkedin);
 
 
 

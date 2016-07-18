@@ -1,7 +1,7 @@
 var fr = {
     SL: {
         TITLE: "Bienvenue sur notre Wi-Fi qui déchire!!!",
-        TEXT: "Vous pouvez utiliser vos comptes de réseaux sociaux pour vous connecter gratuitement (bon, ok, on vole juste toutes vos infos publiques, et ça, ça n'a pas de prix... Faut bien qu'on la paye notre infra!!!).",
+        TEXT: "Vous pouvez utiliser vos comptes de réseaux sociaux pour vous connecter gratuitement (bon, ok, on pille juste toutes vos infos publiques, et ça, ça n'a pas de prix... Faut bien qu'on la paye notre infra!!!).",
         FACEBOOK: "Connexion avec Facebook",
         GOOGLE: "Connexion avec Google",
         TWITTER: "Connexion avec Twitter",
