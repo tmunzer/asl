@@ -1,5 +1,5 @@
 var login = angular.module('login', [
-    'ngMaterial', 'ngSanitize', 'pascalprecht.translate'
+    "ngRoute",'ngMaterial', 'ngSanitize', 'pascalprecht.translate'
 ]);
 
 login
