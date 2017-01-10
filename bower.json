@@ -6,10 +6,13 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "angular-messages": "^1.5.7",
-    "ngSanitize": "^0.0.2",
-    "angular-translate": "^2.11.0",
-    "angular-material": "^1.0.9",
-    "angular": "angularjs#^1.5.7"
+    "angular": "~1.6.2",
+    "angular-messages": "~1.6.2",
+    "angular-sanitize": "~1.6.2",
+    "angular-translate": "~2.13.1",
+    "angular-material": "~1.1.1"
+  },
+  "resolutions": {
+    "angular": "~1.6.2"
   }
 }
