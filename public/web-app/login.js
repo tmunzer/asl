@@ -2,35 +2,6 @@ var login = angular.module('login', [
     "ngRoute", 'ngSanitize', 'ngMaterial', 'pascalprecht.translate'
 ]);
 
-login
-    .config(function ($routeProvider) {
-        $routeProvider
-        .when("/login", {
-            module: "login",
-            controller: "LoginCtrl"
-        })
-    })
-    .config(function ($mdThemingProvider) {
-        $mdThemingProvider.theme('default')
-            .primaryPalette("blue")
-            .accentPalette('green', {
-                'default': '400' // by default use shade 400 from the pink palette for primary intentions
-            });
-    }).config(function ($translateProvider) {
-        $translateProvider.useMissingTranslationHandlerLog();
-        $translateProvider
-            .translations('en', en)
-            .translations('fr', fr)
-            .registerAvailableLanguageKeys(['en', 'fr'], {
-                'en_*': 'en',
-                'fr_*': 'fr',
-                '*': 'en'
-            })
-            .determinePreferredLanguage()
-            .fallbackLanguage('en')
-            .useSanitizeValueStrategy('sanitize');
-
-    });
 
 login.controller('LoginCtrl', function ($scope) {
 
