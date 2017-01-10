@@ -23,7 +23,7 @@ mongoose.connect('mongodb://'+mongodb+'/asl');
 var app = express();
 
 
-app.use('/bower_components',  express.static('./bower_components'));
+app.use('/bower_components',  express.static('../bower_components'));
 
 
 var passport = require('passport');
