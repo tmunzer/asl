@@ -21,11 +21,11 @@ login
             })
             .determinePreferredLanguage()
             .fallbackLanguage('en')
-            .useSanitizeValueStrategy('sanitize');
+            .useSanitizeValueStrategy('escapeParameters');
 
     });
 
 login.controller('LoginCtrl', function ($scope) {
-
+var a=1;
 });
 
