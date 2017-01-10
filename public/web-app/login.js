@@ -3,6 +3,13 @@ var login = angular.module('login', [
 ]);
 
 login
+    .config(function ($routeProvider) {
+        $routeProvider
+        .when("/login", {
+            module: "login",
+            controller: "LoginCtrl"
+        })
+    })
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette("blue")
